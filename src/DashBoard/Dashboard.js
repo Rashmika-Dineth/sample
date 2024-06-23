@@ -2,13 +2,17 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/Form';
+import { useState } from 'react';
 
 function Dashboard() {
+
+    const [id, setId] = useState();
+    const [name,setName] = useState();
 
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: 'React POST Request Example' })
+        body: JSON.stringify({ id, name })
     };
 
     function UploadData() {
@@ -29,10 +33,10 @@ function Dashboard() {
                 label="ID"
                 className="mb-3"
             >
-                <Form.Control type="text" placeholder="ID" />
+                <Form.Control type="text" placeholder="ID" onChange={e => setId(e.target.value)}/>
             </FloatingLabel>
             <FloatingLabel controlId="name" label="Name">
-                <Form.Control type="text" placeholder="Name" />
+                <Form.Control type="text" placeholder="Name" onChange={e => setName(e.target.value)}/>
             </FloatingLabel>
         </Form>
         <br/>
